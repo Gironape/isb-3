@@ -1,4 +1,7 @@
 import json
+import logging
+logger = logging.getLogger()
+logger.setLevel('INFO')
 SETTINGS = {
     'initial_file': 'file/initial_file.txt',
     'encrypted_file': 'file/encrypted_file.txt',
@@ -8,5 +11,9 @@ SETTINGS = {
     'secret_key': 'file/secret_key.pem',
 }
 if __name__ == '__main__':
-    with open('file/settings.json', 'w') as fp:
-        json.dump(SETTINGS, fp)
+    try:
+        with open('file/settings.json', 'w') as fp:
+            json.dump(SETTINGS, fp)
+        logging.info("Настройки записаны")
+    except OSError as err:
+        logging.warning(f'{err} ошибка при записи в файл')
