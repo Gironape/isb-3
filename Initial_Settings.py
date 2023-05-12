@@ -8,5 +8,5 @@ SETTINGS = {
     'secret_key': 'file/secret_key.pem',
 }
 if __name__ == '__main__':
-    with open('settings.json', 'w') as fp:
+    with open('file/settings.json', 'w') as fp:
         json.dump(SETTINGS, fp)
