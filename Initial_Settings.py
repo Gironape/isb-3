@@ -1,4 +1,5 @@
 import json
+import os
 import logging
 logger = logging.getLogger()
 logger.setLevel('INFO')
@@ -12,7 +13,7 @@ SETTINGS = {
 }
 if __name__ == '__main__':
     try:
-        with open('file/settings.json', 'w') as fp:
+        with open(os.path.join('file', 'settings.json'), 'w') as fp:
             json.dump(SETTINGS, fp)
         logging.info("Настройки записаны")
     except OSError as err:
