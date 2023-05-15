@@ -2,18 +2,23 @@ import logging
 import argparse
 import json
 import os
+
 from Key_Generator import generate_symmetric_key, write_symmetric_key, generate_Asymmetric_key
 from Encryption import Symmetric_encryption, Asymmetric_encryption
 from Decryption import Asymmetric_decryption, Symmetric_decryption
+
 def read_settings(file:str) -> dict:
-    # Считывает настройки из файла.
+    """ Считывает настройки из файла.
+        :param file: Путь к файлу.
+    """
     try:
-        with open('file/settings.json') as json_f:
+        with open(file) as json_f:
             data = json.load(json_f)
         logging.info('Настройки считаны')
     except OSError as err:
         logging.warning(f'{err} Ошибка при чтении файла')
     return data
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-set', '--settings', type=str, help='Использовать собственный файл с настройками (Введите '

@@ -1,5 +1,6 @@
 import logging
 import os
+
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import padding as s_padding
@@ -9,10 +10,16 @@ logger = logging.getLogger()
 logger.setLevel('INFO')
 
 def Symmetric_encryption(r_file: str, symmetric_key: bytes, w_file: str) -> None:
+    """
+        Шифрование текста симметричным алгоритмом и сохранение по указанному пути.
+        :param r_file: Путь к файлу с зашифрованным текстом.
+        :param symmetric_key: Симметричный ключ.
+        :param w_file: Путь к файлу сохранения.
+    """
     try:
         with open(r_file, 'r', encoding='utf-8') as text_file:
             text = text_file.read()
-        logging.info(f' Текст считан из r_file')
+        logging.info('Текст считан из r_file')
     except OSError as err:
         logging.warning(f'{err} Ошибка при чтении r_file')
     padder = s_padding.ANSIX923(64).padder()
@@ -26,11 +33,17 @@ def Symmetric_encryption(r_file: str, symmetric_key: bytes, w_file: str) -> None
     try:
         with open(w_file, 'wb') as f_text:
             f_text.write(cipher_text)
-        logging.info(f'Текст записан в w_file')
+        logging.info('Текст записан в w_file')
     except OSError as err:
         logging.warning(f'{err} Ошибка при записи текста в w_file')
 
+
 def Asymmetric_encryption(public_key, symmetric_key:bytes) -> bytes:
+    """
+        Ассиметричное шифрование симметричного ключа.
+        :param public_key: Открытый ключ.
+        :param symmetric_key: Текст.
+    """
     c_text = public_key.encrypt(symmetric_key, padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()),
                                                   algorithm=hashes.SHA256(), label=None))
     return c_text

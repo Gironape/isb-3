@@ -1,8 +1,10 @@
 import json
 import os
 import logging
+
 logger = logging.getLogger()
 logger.setLevel('INFO')
+
 SETTINGS = {
     'initial_file': 'file/initial_file.txt',
     'encrypted_file': 'file/encrypted_file.txt',
@@ -11,6 +13,7 @@ SETTINGS = {
     'public_key': 'file/public_key.pem',
     'secret_key': 'file/secret_key.pem',
 }
+
 if __name__ == '__main__':
     try:
         with open(os.path.join('file', 'settings.json'), 'w') as fp:
