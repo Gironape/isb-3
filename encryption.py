@@ -9,7 +9,8 @@ from cryptography.hazmat.primitives import hashes
 logger = logging.getLogger()
 logger.setLevel('INFO')
 
-def Symmetric_encryption(r_file: str, symmetric_key: bytes, w_file: str) -> None:
+
+def symmetric_encryption(r_file: str, symmetric_key: bytes, w_file: str) -> None:
     """
         Шифрование текста симметричным алгоритмом и сохранение по указанному пути.
         :param r_file: Путь к файлу с зашифрованным текстом.
@@ -38,7 +39,7 @@ def Symmetric_encryption(r_file: str, symmetric_key: bytes, w_file: str) -> None
         logging.warning(f'{err} Ошибка при записи текста в w_file')
 
 
-def Asymmetric_encryption(public_key, symmetric_key:bytes) -> bytes:
+def asymmetric_encryption(public_key, symmetric_key:bytes) -> bytes:
     """
         Ассиметричное шифрование симметричного ключа.
         :param public_key: Открытый ключ.

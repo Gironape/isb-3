@@ -3,6 +3,8 @@ import logging
 
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import serialization
+
+
 def generate_symmetric_key() -> bytes:
     """ Генерация симметричного ключа """
     key = os.urandom(16)
@@ -22,7 +24,7 @@ def write_symmetric_key(file: str, symmetric_key: bytes) -> None:
         logging.warning(f'{err} Ошибка при записи симметричного ключа')
 
 
-def generate_Asymmetric_key(private_k: str, public_k: str) ->bytes:
+def generate_asymmetric_key(private_k: str, public_k: str) ->bytes:
     """
         Генерация суперсекретного и не очень ключей и их запись в файл
         :param private_k: Путь к приватному ключу.

@@ -9,7 +9,8 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 logger = logging.getLogger()
 logger.setLevel('INFO')
 
-def Asymmetric_decryption(private_k_pem: str, symmetric_k_file: str) -> bytes:
+
+def asymmetric_decryption(private_k_pem: str, symmetric_k_file: str) -> bytes:
     """
        Дешифрование симметричного ключа асимметричным алгоритмом
        :param private_k_pem: Путь к приватному ключу.
@@ -33,7 +34,7 @@ def Asymmetric_decryption(private_k_pem: str, symmetric_k_file: str) -> bytes:
                                                  algorithm=hashes.SHA256(), label=None))
 
 
-def Symmetric_decryption(read_file: str, symmetric_key: bytes, write_file: str) -> None:
+def symmetric_decryption(read_file: str, symmetric_key: bytes, write_file: str) -> None:
     """
        Дешифрование текста симметричным алгоритмом и сохранение по указанному пути.
        :param read_file: Путь к файлу с зашифрованным текстом.
